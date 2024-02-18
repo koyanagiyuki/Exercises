@@ -5,82 +5,59 @@
  * @format
  */
 
-import React from 'react';
+import React, {useState} from 'react';
 import {
-  Image,
-  ScrollView,
   StyleSheet,
   Text,
   TextInput,
   View,
-  Button,
+  TouchableOpacity
 } from 'react-native';
-import Programmer from './assets/padi_logo.jpg';
 
-const App = () => {
+const SignInScreen = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSignIn = () => {
+    console.log('Email:', email);
+    console.log('Password:', password);
+  };
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>PADI Company</Text>
-      <ScrollView>
-        <Image
-          source={require('./assets/padi_logo.jpg')}
-          style={styles.image}
-        />
-    <Text style={styles.text}>
-      Professional Association of Diving Instructors.
-    </Text>
-    <TextInput
-      placeholder='Your Name'
-      style={styles.inputName}
-    />
-    <TextInput
-      placeholder='Email'
-      style={styles.inputEmail}
-    />
-    <TextInput
-      placeholder="Password"
-      style={styles.inputPassword}
-    />
-    <Button title= 'click here'> Click Here </Button>  
-      </ScrollView>
+    <View>
+      <Text style={styles.title}>Welcome</Text>
+      <Text style={styles.text}>Username</Text>
+      <TextInput
+       placeholder='Masukan username anda'
+       style={styles.inputName}
+       value={email}
+       onChangeText={setEmail}
+      />
+      <Text style={styles.text}>Password</Text>
+      <TextInput
+       placeholder="Masukan password anda"
+       style={styles.inputPassword}
+       value={password}
+       onChangeText={setPassword}
+      />
+      <TouchableOpacity style={styles.button} onPress={handleSignIn}>
+      <Text>Sign In</Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifycontent: 'center',
-    alignItems: 'center',
-    marginTop: 30,
-    marginLeft: 20,
-    marginRight: 20,
+  title: {
+    fontSize: 40,
+    fontWeight: 'bold',
+    marginBottom: 20,
   },
   text: {
     fontSize: 20,
-    fontWeight: 'bold',
     marginBottom: 10,
-  },
-  image: {
-    width: 300,
-    height: 100,
-    marginBottom: 10,
-  },
-  title: {
-    fontSize: 10,
-    fontWeight: 'bold',
-    color: 'black',
-    textAlign: 'center',
-    marginTop: 10,
   },
   inputName: {
-    borderColor: 'black',
-    borderWidth: 1,
-    margin: 10,
-    borderRadius: 10,
-    padding: 10, 
-  },
-  inputEmail: {
     borderColor: 'black',
     borderWidth: 1,
     margin: 10,
@@ -94,7 +71,12 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 10, 
   },
+  button: {
+    alignItems: 'center',
+    backgroundColor: 'orange',
+    padding: 10,
+  },
 });
 
 
-export default App;
+export default SignInScreen;
